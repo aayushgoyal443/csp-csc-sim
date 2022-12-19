@@ -4,12 +4,13 @@ from slice import Slice
 
 class CSC:
 
-    def __init__(self, id, level):
+    def __init__(self, id):
         self.slice = None
         self.id = id
         self.child_provider = None 
-        self.level = level
-        print("CSC created")
+        self.level = None
+        self.parent_csp = None 
+        print(f"CSC created: {self.id}")
 
 
     def make_slice(self, num_child):

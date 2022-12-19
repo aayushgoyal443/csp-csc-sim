@@ -7,7 +7,7 @@ class Slice:
         self.bandwidth_max = bandwidth_max
         self.children = []
         self.connected_users = []
-        print("Slice created")
+        print(f"Slice created: {self.name}")
 
     def is_available(self):
         bandwidth_next = self.bandwidth_max/ (len(self.connected_users) + 1)
