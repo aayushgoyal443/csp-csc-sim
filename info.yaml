@@ -1,0 +1,6 @@
+slices:
+  x_eMBB:
+    bandwidth: 100000000
+
+base_stations:
+  - bandwidth: 20000000000
