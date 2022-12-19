@@ -5,6 +5,7 @@ from csc import CSC
 import os 
 import sys
 import yaml
+import simpy 
 
 # Read YAML file
 CONF_FILENAME = os.path.join(os.path.dirname(__file__), sys.argv[1])
@@ -17,25 +18,41 @@ except FileNotFoundError:
 
 
 SLICES_INFO = data['slices']
-BASE_STATIONS = data['base_stations'][0]
+BASE_STATION = data['base_stations'][0]
 
 
 # Create slices
 slices = []
 for name, info in SLICES_INFO.items():
-    slices.append(Slice(name, info['bandwidth']))
+    slices.append(Slice(name, info['bandwidth'], info['bandwidth_guaranteed'], info['bandwidth_max']))
 
 
-provider = CSP(slices, BASE_STATIONS['bandwidth'], 0)
+
+csp_a = CSP(BASE_STATION['name'] ,slices, BASE_STATION['bandwidth'], 1)
 
 
 # Create CSCs
-csc = CSC()
+csc_a = CSC("IIT Delhi", 2)
+NUM_CHILD = 3
+csp_a.add_User(csc_a)
+csc_a.init_provider(NUM_CHILD)
 
-provider.add_User(csc)
 
 
+
+
+csp_b = csc_a.child_provider
+
+names  = ["CSE DPT", "ECE DPT", "MECH DPT"]
+for i in range(NUM_CHILD):
+    csc_b = CSC(names[i], csp_a.level+1)  
+    csp_b.add_User(csc_b)
+    print(csc_b)
+
+
+print()
 # check prints
 print(slices)
-print(provider)
-print(csc)
+print(csp_a)
+print(csc_a)
+print(csp_b)    
