@@ -1,0 +1,10 @@
+slices:
+  x_eMBB:
+    bandwidth: 100000
+    bandwidth_guaranteed: 10000
+    bandwidth_max: 100000
+  
+
+base_stations:
+  - bandwidth: 200000000
+    name: "Airtel"

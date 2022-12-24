@@ -10,10 +10,19 @@ class Slice:
         print(f"Slice created: {self.name}")
 
     def is_available(self):
-        bandwidth_next = self.bandwidth_max/ (len(self.connected_users) + 1)
+        if(self.connected_users == []):
+            bandwidth_next = self.bandwidth_max
+        else:
+            bandwidth_next = self.bandwidth_max/ (len(self.connected_users))
         if bandwidth_next < self.bandwidth_guaranteed:
             return False
         return True
+
+    def get_consumable_share(self):
+        if(len(self.connected_users)) == 0:
+            return self.bandwidth
+        else:
+            return self.bandwidth//len(self.connected_users)
 
     # make str fucntion to print all the attributes of the class new line separated
     def __str__(self):

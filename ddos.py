@@ -39,7 +39,7 @@ csc_a.init_provider()
 
 csp_b = csc_a.child_provider
 
-names  = ["CSE DPT", "ECE DPT", "MECH DPT"]
+names  = ["RANDOM DPT", "RANDOM DPT", "RANDOM DPT", "CSE DPT", "EE DPT", "MATHS DPT"]
 NUM_CHILD = len(names)
 csc_bs = []
 for i in range(NUM_CHILD):

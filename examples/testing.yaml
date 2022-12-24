@@ -1,11 +1,11 @@
 slices:
+  x_eMBB2:
+    bandwidth: 100000000
+    bandwidth_guaranteed: 30000000
+    bandwidth_max: 100000000
   x_URLLC:
     bandwidth: 10000000
     bandwidth_guaranteed: 5000000
-    bandwidth_max: 10000000
-  x_eMBB2:
-    bandwidth: 100000000
-    bandwidth_guaranteed: 1000000
     bandwidth_max: 10000000
   x_eMBB3:
     bandwidth: 100000000

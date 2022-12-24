@@ -34,6 +34,7 @@ class CSP:
             for slice in self.slices:
                 if slice.is_available():
                     user.slice = slice
+                    user.usage_remaining = slice.bandwidth_guaranteed
                     user.parent_csp = self
                     user.level = self.level+1
                     slice.connected_users.append(user)
