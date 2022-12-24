@@ -1,2 +1,3 @@
-python3 main.py ./examples/info.yaml
+all:
+	python3 main.py ./examples/info.yaml
 

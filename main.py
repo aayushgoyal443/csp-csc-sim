@@ -1,6 +1,6 @@
-from slice import Slice
-from csp import CSP 
-from csc import CSC 
+from src.slice import Slice
+from src.csp import CSP 
+from src.csc import CSC 
 
 import os 
 import sys

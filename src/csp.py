@@ -1,4 +1,4 @@
-from slice import Slice
+from .slice import Slice
 
 class CSP:
 

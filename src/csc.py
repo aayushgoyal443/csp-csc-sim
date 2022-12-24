@@ -1,5 +1,5 @@
-from csp import CSP
-from slice import Slice
+from .csp import CSP
+from .slice import Slice
 
 
 class CSC:
