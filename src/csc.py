@@ -11,6 +11,7 @@ class CSC:
         self.level = None
         self.last_usage = 0
         self.parent_csp = None 
+        self.active = False
         print(f"CSC created: {self.id}")
 
 
@@ -27,6 +28,28 @@ class CSC:
         self.child_provider = CSP(self.id + "_provd", [self.slice], self.slice.bandwidth, self.level, self)    
     
 
+    def start_consuming(self):
+        if self.slice is None:
+            print(f"Slice not assigned to CSC: {self.id}")
+            return
+        elif self.slice.is_available():
+            self.active=True
+            self.slice.connected_active_users.append(self)
+            print(f"CSC: {self.id} started consuming...")
+        else:
+            print(f"Slice: {self.slice.name} is running at max capacity, cannot assign bandwidth to CSC: {self.id}")
+            return
+
+
+    def stop_consuming(self):
+        if self.slice is None:
+            print(f"Slice not assigned to CSC: {self.id}")
+            return
+        else:
+            self.active=False
+            self.slice.connected_active_users.remove(self)
+            print(f"CSC: {self.id} stopped consuming")
+
     # def start_consume(self):
     #     amt = self.slice.get_consumable_share()
 
@@ -40,4 +63,4 @@ class CSC:
 
     # make str fucntion to print all the attributes of the class new line separated
     def __str__(self):
-        return f"CSC ||\nid: {self.id}\nlevel: {self.level}\nchild_provider: {self.child_provider.id if self.child_provider else None }\nslice: {self.slice.name if self.slice is not None else None}"
+        return f"CSC ||\nid: {self.id}\nlevel: {self.level}\nchild_provider: {self.child_provider.id if self.child_provider else None }\nslice: {self.slice.name if self.slice is not None else None}\nactive: {self.active}\n\n"

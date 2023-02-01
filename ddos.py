@@ -45,11 +45,13 @@ csc_bs = []
 for i in range(NUM_CHILD):
     csc_b = CSC(names[i])  
     csp_b.add_User(csc_b)
+    # if i < 3:
+    #     csc_b.start_consuming()
     print(csc_b)
     csc_bs.append(csc_b)
 
-# for csc_b in csc_bs:
-# 	csc_b.start_consume()
+for csc_b in csc_bs:
+	csc_b.start_consuming()
 
 
 print()

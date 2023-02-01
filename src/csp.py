@@ -1,4 +1,5 @@
 from .slice import Slice
+import random
 
 class CSP:
 
@@ -31,7 +32,12 @@ class CSP:
         if self.check_user(user):
             self.connected_users.append(user)
             self.total_users += 1
-            for slice in self.slices:
+            l = len(self.slices)
+            # make an array with numbers from 0 to l-1 and then shuffle the array
+            num = [i for i in range(l)]
+            random.shuffle(num)
+            for i in num:
+                slice = self.slices[i]
                 if slice.is_available():
                     user.slice = slice
                     user.usage_remaining = slice.bandwidth_guaranteed
@@ -46,4 +52,4 @@ class CSP:
             return False
 
     def __str__(self):
-        return f"CSP ||\nid: {self.id}\nlevel: {self.level}\nbandwidth: {self.bandwidth}\nconnected_users: {self.connected_users}\nparent_csc: {self.parent_csc.id if self.parent_csc else None}\nslices: {self.slices }"
+        return f"CSP ||\nid: {self.id}\nlevel: {self.level}\nbandwidth: {self.bandwidth}\nconnected_users: {self.connected_users}\nparent_csc: {self.parent_csc.id if self.parent_csc else None}\nslices: {self.slices }\n\n"
